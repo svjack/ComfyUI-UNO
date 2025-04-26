@@ -1,4 +1,25 @@
+```bash
+huggingface_cli login
 
+huggingface-cli download black-forest-labs/FLUX.1-dev flux1-dev.safetensors --local-dir ./flux1-model
+
+huggingface-cli download black-forest-labs/FLUX.1-dev ae.safetensors --local-dir ./flux1-model
+
+huggingface-cli download bytedance-research/UNO dit_lora.safetensors --local-dir .
+
+cp ./flux1-model/flux1-dev.safetensors ComfyUI/models/unet
+
+cp ./flux1-model/ae.safetensors ComfyUI/models/vae
+
+cp dit_lora.safetensors ComfyUI/models/loras
+
+cd ComfyUI/custom_nodes
+git clone https://github.com/jax-explorer/ComfyUI-UNO
+cd ComfyUI-UNO
+pip install -r requirements.txt
+
+comfy launch -- --listen 0.0.0.0
+```
 
 
 # ComfyUI UNO Nodes
